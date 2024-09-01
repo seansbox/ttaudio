@@ -34,9 +34,3 @@ def download(url, file=None, folder=None, read=False, update=False):
         return read(file)
     else:
         return file
-
-
-if __name__ == "__main__":
-    download("https://tabletopaudio.com/index.html", folder="dev")
-    download("https://tabletopaudio.com/bootstrap/js/dictionary_a.js", folder="dev")
-    download("https://tabletopaudio.com/bootstrap/js/tta4.js", folder="dev")

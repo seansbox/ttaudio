@@ -68,41 +68,41 @@ _build-icon-symbol() {
 
 # Function to create touch icons
 _build-icon-touch() {
-    local SYMBOL="$1"
-    local FG="$2"
-    local BG="$3"
-    local TTFFILE="$4"
-    magick -background none -fill "$FG" -font "$TTFFILE" -pointsize 768 label:"$SYMBOL" temp-symbol.png
-    magick -size 1024x1024 xc:"$BG" temp-background.png
-    magick temp-background.png temp-symbol.png -gravity center -composite temp-touch.png
-    for size in 57 72 114 120 144 152; do
-        magick temp-touch.png -resize "${size}x${size}" -filter point "$ICO/apple-touch-icon-${size}x${size}.png"
-    done
+  local SYMBOL="$1"
+  local FG="$2"
+  local BG="$3"
+  local TTFFILE="$4"
+  magick -background none -fill "$FG" -font "$TTFFILE" -pointsize 768 label:"$SYMBOL" temp-symbol.png
+  magick -size 1024x1024 xc:"$BG" temp-background.png
+  magick temp-background.png temp-symbol.png -gravity center -composite temp-touch.png
+  for size in 57 72 114 120 144 152; do
+      magick temp-touch.png -resize "${size}x${size}" -filter point "$ICO/apple-touch-icon-${size}x${size}.png"
+  done
 }
 
 # Function to create favicons
 _build-icon-fav() {
-    local SYMBOL="$1"
-    local FG="$2"
-    local BG="$3"
-    local TTFFILE="$4"
-    magick -background none -fill "$FG" -font "$TTFFILE" -pointsize 576 label:"$SYMBOL" temp-symbol.png
-    magick -size 1024x1024 xc:none -fill "$BG" -draw "circle 512,512 512,64" temp-background.png
-    magick temp-background.png temp-symbol.png -gravity center -composite temp-favicon.png
-    magick temp-favicon.png -resize 16x16 -filter point "$ICO/favicon-16x16.png"
-    magick temp-favicon.png -resize 32x32 -filter point "$ICO/favicon-32x32.png"
-    magick temp-favicon.png -define icon:auto-resize=64,48,32,16 "$ICO/favicon.ico"
+  local SYMBOL="$1"
+  local FG="$2"
+  local BG="$3"
+  local TTFFILE="$4"
+  magick -background none -fill "$FG" -font "$TTFFILE" -pointsize 576 label:"$SYMBOL" temp-symbol.png
+  magick -size 1024x1024 xc:none -fill "$BG" -draw "circle 512,512 512,64" temp-background.png
+  magick temp-background.png temp-symbol.png -gravity center -composite temp-favicon.png
+  magick temp-favicon.png -resize 16x16 -filter point "$ICO/favicon-16x16.png"
+  magick temp-favicon.png -resize 32x32 -filter point "$ICO/favicon-32x32.png"
+  magick temp-favicon.png -define icon:auto-resize=64,48,32,16 "$ICO/favicon.ico"
 }
 
 # Function to create tile icons
 _build-icon-tile() {
-    local SYMBOL="$1"
-    local FG="$2"
-    local BG="$3"
-    local TTFFILE="$4"
-    magick -background none -fill "$FG" -font "$TTFFILE" -pointsize 108 label:"$SYMBOL" temp-symbol.png
-    magick -size 144x144 xc:none temp-background.png
-    magick temp-background.png temp-symbol.png -colorspace RGB -gravity center -composite "$ICO/mstile-144x144.png"
+  local SYMBOL="$1"
+  local FG="$2"
+  local BG="$3"
+  local TTFFILE="$4"
+  magick -background none -fill "$FG" -font "$TTFFILE" -pointsize 108 label:"$SYMBOL" temp-symbol.png
+  magick -size 144x144 xc:none temp-background.png
+  magick temp-background.png temp-symbol.png -colorspace RGB -gravity center -composite "$ICO/mstile-144x144.png"
 }
 
 # Main function to build icons

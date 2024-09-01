@@ -1,30 +1,11 @@
 import os
 import re
-import jinja2
 import json
-import sys
 import logging
 import urllib.error
 
 import get
-
-
-def to_yaml(data, indent=0):
-    """
-    Convert a dictionary to a YAML string.
-    """
-    yaml_str = ""
-
-    for key, value in data.items():
-        if isinstance(value, list):
-            yaml_str += " " * indent + key + ":\n"
-            for item in value:
-                yaml_str += " " * (indent + 2) + "- " + str(item) + "\n"
-        else:
-            yaml_str += " " * indent + key + ": " + str(value).replace('"', "") + "\n"
-
-    return "---\n" + yaml_str + "---\n"
-
+import html
 
 htmlfile = get.read("dev/index.html")
 dictfile = get.read("dev/dictionary_a.js")
@@ -79,8 +60,6 @@ for song in re.split(r"<!--song", htmlfile):
     get.download(ttdatum["image"], os.path.join("images", fname), update=True)
     ttdatum["image"] = fname
 
-    # print(ttdatum)
-
 # Clean up orphaned image files
 
 images_new = [m["image"] for m in media.values()]
@@ -88,7 +67,8 @@ images_old = os.listdir("images")
 images_del = [i for i in images_old if i not in images_new]
 if len(images_del) < 10:
     for image in images_del:
-        os.unlink(os.path.join("images", image))
+        if image != ".gitignore":
+            os.unlink(os.path.join("images", image))
 
 # Parse, combine, and download titles and sound files from tta4.js
 
@@ -167,9 +147,7 @@ for med in media:
         }
     )
 
-env = jinja2.Environment(loader=jinja2.FileSystemLoader("dev"))
-tmpl = env.get_template("content.html")
-html = tmpl.render(media=media, title="Tabletop Audio")
+open("index.html", "w", encoding="utf-8").write(html.render_html("Tabletop Audio", media))
 
 # Manifest
 # media = sorted(media, key=lambda d: d["title"])
@@ -183,9 +161,23 @@ for med in media:
 open("public/js/manifest.js", "w", encoding="utf-8").write(
     "var manifest = " + json.dumps(manifest, indent=2, sort_keys=True)
 )
-
-open("index.html", "w", encoding="utf-8").write(html)
 open("foundry-manifest.json", "w", encoding="utf-8").write(json.dumps(foundry, indent=2))
+
+# def to_yaml(data, indent=0):
+#     """
+#     Convert a dictionary to a YAML string.
+#     """
+#     yaml_str = ""
+
+#     for key, value in data.items():
+#         if isinstance(value, list):
+#             yaml_str += " " * indent + key + ":\n"
+#             for item in value:
+#                 yaml_str += " " * (indent + 2) + "- " + str(item) + "\n"
+#         else:
+#             yaml_str += " " * indent + key + ": " + str(value).replace('"', "") + "\n"
+
+#     return "---\n" + yaml_str + "---\n"
 
 # Extract for Obsidian
 # for title, med in manifest.items():

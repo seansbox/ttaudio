@@ -4,9 +4,10 @@ help() { echo "Usage: $0 {command} [args]"; echo "Commands:"; declare -F | awk '
 
 build() {
   #[ -z "$2" ] || [ -z "$3" ] && { echo "Usage: $0 build {thing} {stuff}"; exit 1; }
-  pipenv install
-  pipenv run python3 build/get.py
-  pipenv run python3 build/build.py
+  curl -o "dev/index.html" "https://tabletopaudio.com/index.html"
+  curl -o "dev/dictionary_a.js" "https://tabletopaudio.com/bootstrap/js/dictionary_a.js"
+  curl -o "dev/tta4.js" "https://tabletopaudio.com/bootstrap/js/tta4.js"
+  python3 build/build.py
 }
 
 build-public() {
