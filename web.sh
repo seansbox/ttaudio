@@ -91,6 +91,7 @@ _build-icon-fav() {
   magick temp-background.png temp-symbol.png -gravity center -composite temp-favicon.png
   magick temp-favicon.png -resize 16x16 -filter point "$ICO/favicon-16x16.png"
   magick temp-favicon.png -resize 32x32 -filter point "$ICO/favicon-32x32.png"
+  magick temp-favicon.png -resize 128x128 -filter point "$ICO/favicon-128x128.png"
   magick temp-favicon.png -define icon:auto-resize=64,48,32,16 "$ICO/favicon.ico"
 }
 
