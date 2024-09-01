@@ -87,7 +87,8 @@ for match in re.findall(r'{title:"([^"]+?)"[^"]+?"([^"]+?)"}', listfile):
     print(url)
     try:
         get.download(url, os.path.join("sounds", match[1]), update=True)
-    except urllib.error.HTTPError:
+    except urllib.error.HTTPError as e:
+        print(e)
         song["error"] = True
 
 # Parse and append tags to media objects
