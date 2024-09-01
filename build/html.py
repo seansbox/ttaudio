@@ -7,7 +7,7 @@ def render_audio_list(audio_list):
 
 def render_audio_entry(title, image, type, flavor, tags, num, file, color="#FFFFFF"):
     return f"""
-    <a href="#" onclick='return playMusic("{title}")' class="list-group-item list-group-item-action p-0" style="line-height: 97%; font-size: 85%; overflow: hidden; height: 50px">
+    <a href="#" onclick='return playMusic("{title.replace("'", "&apos;")}")' class="list-group-item list-group-item-action p-0" style="line-height: 97%; font-size: 85%; overflow: hidden; height: 50px">
         <img class="mediaImage float-left mx-1" src="{image}" style="width: 75px; height: 50px"/>
         <div class="pt-1 pr-1">
             <div class="text-nowrap">
@@ -15,7 +15,7 @@ def render_audio_entry(title, image, type, flavor, tags, num, file, color="#FFFF
                 <span class="badge badge-dark" style="font-weight: normal;">{type}</span>
             </div>
             <span class="text-muted" style="font-size: 90%;">{flavor}</span>
-            <span style="display:none">{tags}</span>
+            <span style="display:none">{', '.join(tags)}</span>
         </div>
     </a>"""
 
