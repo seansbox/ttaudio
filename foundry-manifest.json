@@ -1088,6 +1088,14 @@
       "volume": 0.8
     },
     {
+      "name": "Fire Dance",
+      "description": "\"Let's all go to the fire dances\" - Killing Joke",
+      "path": "sounds/430_Fire_Dance.mp3",
+      "fade": 3000,
+      "repeat": true,
+      "volume": 0.8
+    },
+    {
       "name": "Fishing Village",
       "description": "A busy little village on the southern shore of somewhere",
       "path": "sounds/167_Fishing_Village.mp3",
@@ -1424,6 +1432,14 @@
       "volume": 0.8
     },
     {
+      "name": "Hotel Noir",
+      "description": "An intriguing crowd has gathered - in black and white",
+      "path": "sounds/431_Hotel_Noir.mp3",
+      "fade": 3000,
+      "repeat": true,
+      "volume": 0.8
+    },
+    {
       "name": "House on the Hill",
       "description": "You've heard the stories all your life",
       "path": "sounds/18_House_on_the_Hill.mp3",
@@ -1467,6 +1483,14 @@
       "name": "Icebound Town",
       "description": "One of a series of brutally cold northern towns",
       "path": "sounds/231_Icebound_Town.mp3",
+      "fade": 3000,
+      "repeat": true,
+      "volume": 0.8
+    },
+    {
+      "name": "Imperial Pursuit",
+      "description": "Imperial forces are closing in",
+      "path": "sounds/429_Imperial_Pursuit.mp3",
       "fade": 3000,
       "repeat": true,
       "volume": 0.8

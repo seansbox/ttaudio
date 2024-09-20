@@ -2200,6 +2200,22 @@ var manifest = {
     ],
     "type": "music"
   },
+  "Fire Dance": {
+    "file": "sounds/430_Fire_Dance.mp3",
+    "flavor": "\"Let's all go to the fire dances\" - Killing Joke",
+    "image": "images/fire-dance.jpg",
+    "num": 430,
+    "tags": [
+      "pagan",
+      "ritual",
+      "jungle",
+      "forest",
+      "tribal",
+      "drums",
+      "chant"
+    ],
+    "type": "ambience + music"
+  },
   "Fishing Village": {
     "file": "sounds/167_Fishing_Village.mp3",
     "flavor": "A busy little village on the southern shore of somewhere",
@@ -2883,6 +2899,24 @@ var manifest = {
     ],
     "type": "ambience + music"
   },
+  "Hotel Noir": {
+    "file": "sounds/431_Hotel_Noir.mp3",
+    "flavor": "An intriguing crowd has gathered - in black and white",
+    "image": "images/hotel-noir.jpg",
+    "num": 431,
+    "tags": [
+      "1940s",
+      "1930s",
+      "Cthulhu",
+      "jazz",
+      "city",
+      "detective",
+      "mystery",
+      "spy",
+      "espionage"
+    ],
+    "type": "ambience + music"
+  },
   "House on the Hill": {
     "file": "sounds/18_House_on_the_Hill.mp3",
     "flavor": "You've heard the stories all your life",
@@ -2987,6 +3021,21 @@ var manifest = {
       "village"
     ],
     "type": "ambience + minimal music"
+  },
+  "Imperial Pursuit": {
+    "file": "sounds/429_Imperial_Pursuit.mp3",
+    "flavor": "Imperial forces are closing in",
+    "image": "images/imperial-pursuit.jpg",
+    "num": 429,
+    "tags": [
+      "Star Wars",
+      "Deathstar",
+      "Stormtroopers",
+      "Empire",
+      "spacestation",
+      "chase"
+    ],
+    "type": "ambience + music"
   },
   "In the Shadows": {
     "file": "sounds/10_In_The_Shadows.mp3",
