@@ -10,10 +10,10 @@ build() {
   python3 build/build.py
 }
 
-build-public() {
-  ./web.sh build-libs
-  ./web.sh build-fonts
-  ./web.sh build-icon nf-seti-audio "#FFFFFF" "#F44336"
+build_public() {
+  ./web.sh build_libs
+  ./web.sh build_fonts
+  ./web.sh build_icon nf-seti-audio "#FFFFFF" "#F44336"
 }
 
 serve() {

@@ -15,7 +15,7 @@ WOFF_AGENT="Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11
 TTF_AGENT="Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1"
 SVG_AGENT="Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10gin_lib.cc"
 
-build-libs() {
+build_libs() {
   mkdir -p "$CSS"
   curl -o "$CSS/toggle-bootstrap.min.css" "https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@latest/dist/css/toggle-bootstrap.min.css"
   curl -o "$CSS/toggle-bootstrap-dark.min.css" "https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@latest/dist/css/toggle-bootstrap-dark.min.css"
@@ -29,7 +29,7 @@ build-libs() {
   curl -o "$JS/handlebars.min.js" "https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"
 }
 
-_build-font() {
+_build_font() {
   FOLDER="$1"
   CSSPATH="$2"
   RELPATH="${3:-}"
@@ -42,7 +42,7 @@ _build-font() {
   popd
 }
 
-_build-font-nerd() {
+_build_font_nerd() {
   mkdir -p "$TTF/nerd-font" && pushd "$TTF/nerd-font"
   curl -A "$TTF_AGENT" -o "../nerd-font.css" "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/css/nerd-fonts-generated.css"
   curl -o "nerd-font.ttf" "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf"
@@ -51,23 +51,23 @@ _build-font-nerd() {
   popd
 }
 
-build-fonts() {
-  _build-font "fira-sans-condensed" "https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,b,bi,i"
-  _build-font "amatic-sc" "https://fonts.googleapis.com/css?family=Amatic+SC:400,b,bi,i"
-  _build-font "noto-emoji" "https://fonts.googleapis.com/css?family=Noto+Emoji:400,b,bi,i"
-  _build-font "game-icons" "https://raw.githubusercontent.com/seansbox/gameicons-xlsx/main/game-icons.css" "https://raw.githubusercontent.com/seansbox/gameicons-xlsx/main/"
-  _build-font-nerd
+build_fonts() {
+  _build_font "fira-sans-condensed" "https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,b,bi,i"
+  _build_font "amatic-sc" "https://fonts.googleapis.com/css?family=Amatic+SC:400,b,bi,i"
+  _build_font "noto-emoji" "https://fonts.googleapis.com/css?family=Noto+Emoji:400,b,bi,i"
+  _build_font "game-icons" "https://raw.githubusercontent.com/seansbox/gameicons-xlsx/main/game-icons.css" "https://raw.githubusercontent.com/seansbox/gameicons-xlsx/main/"
+  _build_font_nerd
 }
 
 # Function to extract the symbol from CSS and create a temporary symbol text file
-_build-icon-symbol() {
+_build_icon_symbol() {
   local SYMBOLNAME="$1"
   local CSSFILE="$2"
   perl -CS -ne '/\.'${SYMBOLNAME}':before { content: "\\([^"]+)"/ and print chr(hex($1))' "$CSSFILE" > temp-symbol.txt
 }
 
 # Function to create touch icons
-_build-icon-touch() {
+_build_icon_touch() {
   local SYMBOL="$1"
   local FG="$2"
   local BG="$3"
@@ -81,7 +81,7 @@ _build-icon-touch() {
 }
 
 # Function to create favicons
-_build-icon-fav() {
+_build_icon_fav() {
   local SYMBOL="$1"
   local FG="$2"
   local BG="$3"
@@ -91,12 +91,11 @@ _build-icon-fav() {
   magick temp-background.png temp-symbol.png -gravity center -composite temp-favicon.png
   magick temp-favicon.png -resize 16x16 -filter point "$ICO/favicon-16x16.png"
   magick temp-favicon.png -resize 32x32 -filter point "$ICO/favicon-32x32.png"
-  magick temp-favicon.png -resize 128x128 -filter point "$ICO/favicon-128x128.png"
   magick temp-favicon.png -define icon:auto-resize=64,48,32,16 "$ICO/favicon.ico"
 }
 
 # Function to create tile icons
-_build-icon-tile() {
+_build_icon_tile() {
   local SYMBOL="$1"
   local FG="$2"
   local BG="$3"
@@ -107,7 +106,7 @@ _build-icon-tile() {
 }
 
 # Main function to build icons
-build-icon() {
+build_icon() {
   [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ] && { echo "Optional: $0 build-icon {symbol} {fgcolor} {bgcolor}"; }
   local NF="${2:-nf-seti-audio}"
   local FG="${3:-#FFFFFF}"
@@ -130,10 +129,10 @@ build-icon() {
 <meta name="msapplication-TileImage" content="$ICO/mstile-144x144.png" />
 EOF
 
-  _build-icon-symbol "$NF" "$TTF/nerd-font.css"
-  _build-icon-touch "$(cat temp-symbol.txt)" "$FG" "$BG" "$TTF/nerd-font/nerd-font.ttf"
-  _build-icon-fav "$(cat temp-symbol.txt)" "$FG" "$BG" "$TTF/nerd-font/nerd-font.ttf"
-  _build-icon-tile "$(cat temp-symbol.txt)" "$FG" "$BG" "$TTF/nerd-font/nerd-font.ttf"
+  _build_icon_symbol "$NF" "$TTF/nerd-font.css"
+  _build_icon_touch "$(cat temp-symbol.txt)" "$FG" "$BG" "$TTF/nerd-font/nerd-font.ttf"
+  _build_icon_fav "$(cat temp-symbol.txt)" "$FG" "$BG" "$TTF/nerd-font/nerd-font.ttf"
+  _build_icon_tile "$(cat temp-symbol.txt)" "$FG" "$BG" "$TTF/nerd-font/nerd-font.ttf"
   rm temp-*.*
 }
 

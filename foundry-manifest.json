@@ -1592,6 +1592,14 @@
       "volume": 0.8
     },
     {
+      "name": "Lair of the Wyrm",
+      "description": "A large, wingless dragon is protecting something valuable",
+      "path": "sounds/432_Lair_of_the_Wyrm.mp3",
+      "fade": 3000,
+      "repeat": true,
+      "volume": 0.8
+    },
+    {
       "name": "Lakeside Camp",
       "description": "A quiet spot, off the beaten track",
       "path": "sounds/149_Lakeside_Camp.mp3",

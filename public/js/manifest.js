@@ -3232,6 +3232,22 @@ var manifest = {
     ],
     "type": "ambience + minimal music"
   },
+  "Lair of the Wyrm": {
+    "file": "sounds/432_Lair_of_the_Wyrm.mp3",
+    "flavor": "A large, wingless dragon is protecting something valuable",
+    "image": "images/lair-of-the-wyrm.jpg",
+    "num": 432,
+    "tags": [
+      "cave",
+      "cavern",
+      "dragon",
+      "boss",
+      "dungeon",
+      "action",
+      "monster"
+    ],
+    "type": "ambience + music"
+  },
   "Lakeside Camp": {
     "file": "sounds/149_Lakeside_Camp.mp3",
     "flavor": "A quiet spot, off the beaten track",
