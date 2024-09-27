@@ -7,6 +7,7 @@ async function importTabletopAudio() {
   try {
     manifest = await fetch(ASSETS_URL + "foundry-manifest.json");
     if (!manifest.ok) {
+      console.error("Failed to fetch data:", manifest);
       throw new Error("Failed to fetch foundry-manifest.json");
     }
     manifest = await manifest.json();
